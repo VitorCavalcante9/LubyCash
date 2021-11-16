@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  server:
+    container_name: ms_clients
+    image: node
+    working_dir: /src/ms_clients
+    ports:
+      - 3334:3334
+    volumes:
+      - ./:/src/ms_clients
+    command: yarn dev:server
+    networks:
+      - microsservices-prova
+
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql-container
+    environment:
+      MYSQL_DATABASE: 'ms_lubycash'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: '123456'
+      MYSQL_ROOT_PASSWORD: '123456'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - /home/vitor/Desenvolvimento/Docker/Volumes/MySql:/var/lib/mysql
+    networks:
+      - microsservices-prova
+
+networks:
+  microsservices-prova:
+    external: true

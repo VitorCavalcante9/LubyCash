@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  app:
+    container_name: 'lubycash'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lubycash
+    volumes:
+      - ./:/home/node/app
+      - /home/node/app/node_modules
+    ports:
+      - 3333:3333
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql-container
+    environment:
+      MYSQL_DATABASE: 'lubycash_api'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: '123456'
+      MYSQL_ROOT_PASSWORD: '123456'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - /home/vitor/Desenvolvimento/Docker/Volumes/MySql:/var/lib/mysql
+    networks:
+      - microsservices-prova
+
+networks:
+  microsservices-prova:
+    external: true
