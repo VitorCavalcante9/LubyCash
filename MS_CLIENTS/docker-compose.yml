@@ -3,33 +3,28 @@ version: '3'
 services:
   server:
     container_name: ms_clients
-    image: node
-    working_dir: /src/ms_clients
-    ports:
-      - 3334:3334
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ms_clients
     volumes:
       - ./:/src/ms_clients
     command: yarn dev:server
     networks:
       - microsservices-prova
-
-  db:
-    image: mysql:5.7
+    depends_on:
+      - mysql
+  migrations:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ms_clients
     restart: always
-    container_name: mysql-container
-    environment:
-      MYSQL_DATABASE: 'ms_lubycash'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: '123456'
-      MYSQL_ROOT_PASSWORD: '123456'
-    ports:
-      - '3306:3306'
-    expose:
-      - '3306'
-    volumes:
-      - /home/vitor/Desenvolvimento/Docker/Volumes/MySql:/var/lib/mysql
+    command: yarn typeorm migration:run
     networks:
       - microsservices-prova
+    depends_on:
+      - mysql
 
 networks:
   microsservices-prova:
