@@ -4,10 +4,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToMany,
   PrimaryColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcrypt';
+import { Address } from './Address';
+import { Token } from './Token';
 
 @Entity('clients')
 class Client {
@@ -30,18 +34,6 @@ class Client {
   cpf_number: number;
 
   @Column()
-  address: string;
-
-  @Column()
-  city: string;
-
-  @Column()
-  state: string;
-
-  @Column()
-  zipcode: number;
-
-  @Column()
   current_balance: number;
 
   @Column()
@@ -58,6 +50,18 @@ class Client {
 
   @CreateDateColumn()
   created_at: string;
+
+  @OneToMany(() => Address, (address) => address.client, {
+    cascade: ['insert', 'update', 'remove'],
+  })
+  @JoinColumn({ name: 'client_id' })
+  addresses: Address[];
+
+  @OneToMany(() => Token, (token) => token.client, {
+    cascade: ['insert', 'update', 'remove'],
+  })
+  @JoinColumn({ name: 'client_id' })
+  tokens: Token[];
 
   constructor() {
     if (!this.id) this.id = uuid();

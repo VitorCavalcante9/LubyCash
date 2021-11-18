@@ -537,6 +537,11 @@
   resolved "https://registry.yarnpkg.com/@types/stack-trace/-/stack-trace-0.0.29.tgz#eb7a7c60098edb35630ed900742a5ecb20cfcb4d"
   integrity sha512-TgfOX+mGY/NyNxJLIbDWrO9DjGoVSW9+aB8H2yy1fy32jsvxijhmyJI9fDFgvz3YP4lvJaq9DzdR/M1bOgVc9g==
 
+"@types/uuid@^8.3.3":
+  version "8.3.3"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.3.tgz#c6a60686d953dbd1b1d45e66f4ecdbd5d471b4d0"
+  integrity sha512-0LbEEx1zxrYB3pgpd1M5lEhLcXjKJnYghvhTRgaBeUivLHMDM1TzF3IJ6hXU2+8uA4Xz+5BA63mtZo5DjVT8iA==
+
 "@types/validator@^13.6.3":
   version "13.7.0"
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.7.0.tgz#fa25263656d234473025c2d48249a900053c355a"
@@ -2415,6 +2420,11 @@ junk@^3.1.0:
   resolved "https://registry.yarnpkg.com/junk/-/junk-3.1.0.tgz#31499098d902b7e98c5d9b9c80f43457a88abfa1"
   integrity sha512-pBxcB3LFc8QVgdggvZWyeys+hnrNWg4OcZIU/1X59k5jQdLBlCsYGRQaz234SqoRLTCgMH00fY0xRJH+F9METQ==
 
+kafkajs@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/kafkajs/-/kafkajs-1.15.0.tgz#a5ada0d933edca2149177393562be6fb0875ec3a"
+  integrity sha512-yjPyEnQCkPxAuQLIJnY5dI+xnmmgXmhuOQ1GVxClG5KTOV/rJcW1qA3UfvyEJKTp/RTSqQnUR3HJsKFvHyTpNg==
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -4060,6 +4070,11 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache@^2.0.3:
   version "2.3.0"

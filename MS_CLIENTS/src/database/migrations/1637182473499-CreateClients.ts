@@ -34,22 +34,6 @@ export class CreateClients1637182473499 implements MigrationInterface {
             type: 'integer',
           },
           {
-            name: 'address',
-            type: 'varchar',
-          },
-          {
-            name: 'city',
-            type: 'varchar',
-          },
-          {
-            name: 'state',
-            type: 'varchar',
-          },
-          {
-            name: 'zipcode',
-            type: 'integer',
-          },
-          {
             name: 'current_balance',
             type: 'double',
           },
