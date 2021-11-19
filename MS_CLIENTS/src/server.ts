@@ -5,6 +5,7 @@ import Consumer from './kafkaService/Consumer';
 import { createConnection } from 'typeorm';
 
 const consumer = new Consumer('lubycash-group');
+consumer.consume({ topic: 'create-client', fromBeginning: false });
 
 createConnection();
 const app = express();

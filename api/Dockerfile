@@ -18,4 +18,4 @@ USER node
 
 EXPOSE 3333
 
-ENTRYPOINT ["node","ace","serve","--watch"]
+CMD ["node", "ace", "serve", "--watch"]

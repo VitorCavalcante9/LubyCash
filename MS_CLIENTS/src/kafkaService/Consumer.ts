@@ -24,9 +24,10 @@ export default class Consumer {
 
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
-        const data = message.value?.toString();
-
-        console.log(data);
+        console.log({
+          topic,
+          value: message.value?.toString(),
+        });
       },
     });
   }
