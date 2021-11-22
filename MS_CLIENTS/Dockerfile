@@ -2,8 +2,11 @@ FROM node:alpine
 
 WORKDIR /src/ms_clients
 
-COPY package*.json ./
+COPY package.json yarn.* ./
+
 RUN yarn
+
+RUN yarn add nodemailer
 
 COPY . .
 

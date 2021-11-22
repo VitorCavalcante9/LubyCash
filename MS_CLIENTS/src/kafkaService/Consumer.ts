@@ -1,4 +1,5 @@
 import { Kafka, Consumer as KafkaConsumer } from 'kafkajs';
+import CreateClientService from '../services/CreateClientService';
 
 interface IConsumeProps {
   topic: string;
@@ -24,11 +25,27 @@ export default class Consumer {
 
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
+        const value = message.value?.toString();
+
         console.log({
           topic,
-          value: message.value?.toString(),
+          value,
         });
+
+        if (value) {
+          if (topic === 'create-client') this.createClient(value);
+        }
       },
     });
+  }
+
+  async createClient(value) {
+    const data = JSON.parse(value);
+
+    const service = new CreateClientService();
+
+    const client = await service.execute(data);
+
+    console.log('client', client);
   }
 }

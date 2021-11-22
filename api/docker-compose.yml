@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: lubycash
-    restart: always
+    restart: 'no'
     command: node ace migration:run
     networks:
       - microsservices-prova

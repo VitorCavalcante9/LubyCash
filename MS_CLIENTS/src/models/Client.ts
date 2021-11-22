@@ -28,10 +28,10 @@ class Client {
   password: string;
 
   @Column()
-  phone: number;
+  phone: string;
 
   @Column()
-  cpf_number: number;
+  cpf_number: string;
 
   @Column()
   current_balance: number;

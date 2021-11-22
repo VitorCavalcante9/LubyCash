@@ -11,10 +11,7 @@ export default class ClientsController {
       'password',
       'phone',
       'cpf_number',
-      'address',
-      'city',
-      'state',
-      'zipcode',
+      'addresses',
       'current_balance',
       'average_salary',
     ]);

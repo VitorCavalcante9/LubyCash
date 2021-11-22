@@ -9,17 +9,19 @@ services:
     image: ms_clients
     volumes:
       - ./:/src/ms_clients
+      - /src/ms_clients/node_modules
     command: yarn dev:server
     networks:
       - microsservices-prova
     depends_on:
       - mysql
+
   migrations:
     build:
       context: .
       dockerfile: Dockerfile
     image: ms_clients
-    restart: always
+    restart: 'no'
     command: yarn typeorm migration:run
     networks:
       - microsservices-prova

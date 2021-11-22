@@ -23,15 +23,17 @@ export class CreateClients1637182473499 implements MigrationInterface {
           },
           {
             name: 'password',
-            type: 'integer',
+            type: 'varchar',
           },
           {
             name: 'phone',
             type: 'varchar',
+            length: '11',
           },
           {
             name: 'cpf_number',
-            type: 'integer',
+            type: 'varchar',
+            length: '11',
           },
           {
             name: 'current_balance',
@@ -39,7 +41,7 @@ export class CreateClients1637182473499 implements MigrationInterface {
           },
           {
             name: 'average_salary',
-            type: 'varchar',
+            type: 'double',
           },
           {
             name: 'status',
