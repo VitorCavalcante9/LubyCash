@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/naming-convention */
+import RegisterTransactionService from '../services/registerTransactionService';
 import { Consumer as KafkaConsumer, Kafka } from 'kafkajs';
 
 interface IConsumer {
@@ -29,11 +30,26 @@ export default class Consumer {
     console.log(`Consuming topic ${topic}`);
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
+        const value = message.value?.toString();
+
         console.log({
           topic,
-          value: message.value?.toString(),
+          value,
         });
+
+        if (value) {
+          if (topic === 'register-transaction') this.registerTransaction(value);
+        }
       },
     });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
+  async registerTransaction(value: string) {
+    const data = JSON.parse(value);
+    const service = new RegisterTransactionService();
+    const transaction = await service.execute(data);
+
+    console.log('transaction', transaction);
   }
 }

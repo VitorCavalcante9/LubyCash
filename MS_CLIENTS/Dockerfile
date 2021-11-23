@@ -6,7 +6,7 @@ COPY package.json yarn.* ./
 
 RUN yarn
 
-RUN yarn add nodemailer
+# RUN yarn add jsonwebtoken
 
 COPY . .
 

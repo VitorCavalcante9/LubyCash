@@ -10,7 +10,9 @@ export class CreateAdresses1637257361234 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             generationStrategy: 'increment',
+            unsigned: true,
             isPrimary: true,
+            isGenerated: true,
           },
           {
             name: 'client_id',

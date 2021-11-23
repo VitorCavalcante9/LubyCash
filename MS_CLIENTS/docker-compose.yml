@@ -10,7 +10,8 @@ services:
     volumes:
       - ./:/src/ms_clients
       - /src/ms_clients/node_modules
-    command: yarn dev:server
+    ports:
+      - 3334:3334
     networks:
       - microsservices-prova
     depends_on:

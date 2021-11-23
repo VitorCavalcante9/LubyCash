@@ -46,7 +46,7 @@ class Client {
   token?: string;
 
   @CreateDateColumn()
-  token_created_at?: string;
+  token_created_at?: Date;
 
   @CreateDateColumn()
   created_at: string;

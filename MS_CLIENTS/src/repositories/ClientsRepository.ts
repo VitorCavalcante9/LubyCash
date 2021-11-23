@@ -46,7 +46,7 @@ class ClientsRepository extends Repository<Client> {
     await this.save(client);
 
     const addressesRepository = getCustomRepository(AddressRepository);
-    addresses.forEach(async (address) => {
+    for (const address of addresses) {
       const newAddress = addressesRepository.create({
         ...address,
         zipcode: Number(address.zipcode),
@@ -54,7 +54,7 @@ class ClientsRepository extends Repository<Client> {
       });
 
       await addressesRepository.save(newAddress);
-    });
+    }
 
     return client;
   }

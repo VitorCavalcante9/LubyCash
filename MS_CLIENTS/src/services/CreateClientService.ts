@@ -24,8 +24,11 @@ export default class CreateClientService {
   public async execute(data: IRequest): Promise<Client | undefined> {
     const clientsRepository = getCustomRepository(ClientsRepository);
 
-    const verifyIfClientAlreadyExists = await clientsRepository.findOne({
+    const verifyIfCpfAlreadyExists = await clientsRepository.findOne({
       cpf_number: data.cpf_number,
+    });
+    const verifyIfEmailAlreadyExists = await clientsRepository.findOne({
+      email: data.email,
     });
 
     const disapprovedMailPath = resolve(
@@ -41,8 +44,8 @@ export default class CreateClientService {
       cpf: data.cpf_number,
     };
 
-    if (verifyIfClientAlreadyExists) {
-      if (verifyIfClientAlreadyExists.status === 'Disapproved') {
+    if (verifyIfCpfAlreadyExists || verifyIfEmailAlreadyExists) {
+      if (verifyIfCpfAlreadyExists.status === 'Disapproved') {
         await SendMailService.execute(
           data.email,
           'Status da solicitação',
@@ -58,7 +61,6 @@ export default class CreateClientService {
     if (status === 'Approved') {
       data.current_balance += 200;
     }
-    console.log(data, { status });
 
     const client = await clientsRepository.createWithAddresses({
       ...data,

@@ -8,11 +8,11 @@ COPY package.json yarn.* ./
 
 RUN apk add --no-cache git
 
-COPY . /home/node/app/
-
 RUN chown -R node:node /home/node
 
 RUN yarn
+
+COPY . .
 
 USER node
 
