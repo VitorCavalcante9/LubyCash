@@ -24,5 +24,19 @@ Route.get('/', async () => {
   return { hello: 'world' };
 });
 
+// Admins
+Route.group(() => {
+  Route.post('/admins', 'AdminsController.store');
+  Route.get('/admins', 'AdminsController.show');
+  Route.put('/admins', 'AdminsController.update');
+  Route.delete('/admins', 'AdminsController.destroy');
+}).middleware(['auth']);
+
+Route.post('/sessions', 'SessionController.store');
+
+// Passwords
+Route.post('/passwords', 'ForgotPasswordController.store');
+Route.put('/passwords', 'ForgotPasswordController.update');
+
 // Clients
 Route.post('/clients', 'ClientsController.store');

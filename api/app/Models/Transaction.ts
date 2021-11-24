@@ -6,6 +6,9 @@ export default class Transaction extends BaseModel {
   public id: number;
 
   @column()
+  public type: string;
+
+  @column()
   public cpf_from: string;
 
   @column()

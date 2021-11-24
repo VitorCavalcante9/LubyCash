@@ -11,6 +11,7 @@ export default class AdminsSchema extends BaseSchema {
       table.string('password', 180).notNullable();
       table.string('remember_me_token');
       table.string('token');
+      table.timestamp('token_created_at');
       table.timestamps();
     });
   }

@@ -4,7 +4,9 @@
     "./commands",
     "@adonisjs/core/build/commands/index.js",
     "@adonisjs/repl/build/commands",
-    "@adonisjs/lucid/build/commands"
+    "@adonisjs/lucid/build/commands",
+    "@rocketseat/adonis-bull/build/commands",
+    "@adonisjs/mail/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
@@ -16,15 +18,25 @@
   "preloads": [
     "./start/routes",
     "./start/kernel",
-    "./start/kafka"
+    "./start/kafka",
+    "./start/bull"
   ],
   "providers": [
     "./providers/AppProvider",
     "@adonisjs/core",
     "@adonisjs/lucid",
-    "@adonisjs/auth"
+    "@adonisjs/auth",
+    "@rocketseat/adonis-bull",
+    "@adonisjs/view",
+    "@adonisjs/mail"
   ],
   "aceProviders": [
     "@adonisjs/repl"
+  ],
+  "metaFiles": [
+    {
+      "pattern": "resources/views/**/*.edge",
+      "reloadServer": false
+    }
   ]
 }

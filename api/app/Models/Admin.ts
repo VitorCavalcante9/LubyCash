@@ -18,6 +18,9 @@ export default class Admin extends BaseModel {
   public id: string;
 
   @column()
+  public full_name: string;
+
+  @column()
   public email: string;
 
   @column({ serializeAs: null })
@@ -25,6 +28,12 @@ export default class Admin extends BaseModel {
 
   @column()
   public rememberMeToken?: string;
+
+  @column()
+  public token: string | null;
+
+  @column()
+  public token_created_at: Date | null;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

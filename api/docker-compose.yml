@@ -16,6 +16,7 @@ services:
       - microsservices-prova
     depends_on:
       - mysql
+      - redis
 
   migrations:
     build:
@@ -28,6 +29,13 @@ services:
       - microsservices-prova
     depends_on:
       - mysql
+
+  redis:
+    image: redis
+    networks:
+      - microsservices-prova
+    ports:
+      - '6379:6379'
 
 networks:
   microsservices-prova:

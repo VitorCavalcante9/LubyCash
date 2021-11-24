@@ -20,18 +20,23 @@ class TransactionsController {
         });
       }
 
-      const verifyIfCpfExists = await clientsRepository.findOne({
+      const targetClient = await clientsRepository.findOne({
         where: { cpf_number: cpf_to },
       });
-      if (!verifyIfCpfExists) {
+      if (!targetClient) {
         return response.status(400).json({
           error: { message: 'Nenhuma conta está registrada com este cpf' },
         });
       }
 
       client.current_balance -= value;
+      await clientsRepository.update(client.id, client);
+
+      targetClient.current_balance += value;
+      await clientsRepository.update(targetClient.id, targetClient);
 
       const data = {
+        type,
         cpf_from: client.cpf_number,
         cpf_to,
         value,
