@@ -23,7 +23,7 @@ export default class Consumer {
     this.consumer = kafka.consumer({ groupId });
   }
 
-  public async consume({ topic, fromBeginning }: IConsume) {
+  public async consume({ topic, fromBeginning }: IConsume): Promise<void> {
     await this.consumer.connect();
     await this.consumer.subscribe({ topic, fromBeginning });
 
@@ -44,10 +44,18 @@ export default class Consumer {
     });
   }
 
+  public async test({ topic, fromBeginning }: IConsume): Promise<KafkaConsumer> {
+    await this.consumer.connect();
+    await this.consumer.subscribe({ topic, fromBeginning });
+
+    console.log(`Consuming topic ${topic}`);
+    return this.consumer;
+  }
+
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
   async registerTransaction(value: string) {
     const data = JSON.parse(value);
     const service = new RegisterTransactionService();
-    const transaction = await service.execute(data);
+    await service.execute(data);
   }
 }

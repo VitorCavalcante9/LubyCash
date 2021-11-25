@@ -19,6 +19,8 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route';
+import GetClientsService from 'App/services/GetClientsService';
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 Route.get('/', async () => {
   return { hello: 'world' };
@@ -40,3 +42,12 @@ Route.put('/passwords', 'ForgotPasswordController.update');
 
 // Clients
 Route.post('/clients', 'ClientsController.store');
+
+// Transactions
+Route.get('/transactions', 'TransactionsController.index').middleware('auth');
+
+// Route.get('/test', async ({ response }: HttpContextContract) => {
+//   const service = new GetClientsService();
+//   const test = await service.execute();
+//   return response.json({ test });
+// });
