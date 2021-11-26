@@ -44,14 +44,6 @@ export default class Consumer {
     });
   }
 
-  public async test({ topic, fromBeginning }: IConsume): Promise<KafkaConsumer> {
-    await this.consumer.connect();
-    await this.consumer.subscribe({ topic, fromBeginning });
-
-    console.log(`Consuming topic ${topic}`);
-    return this.consumer;
-  }
-
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
   async registerTransaction(value: string) {
     const data = JSON.parse(value);
