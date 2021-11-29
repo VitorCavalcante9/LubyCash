@@ -19,5 +19,6 @@ router.post('/transactions', authMiddleware, TransactionsController.store);
 
 // Clients
 router.get('/clients', adminMiddleware, ClientsController.index);
+router.get('/clients/:cpf', adminMiddleware, ClientsController.show);
 
 export { router };

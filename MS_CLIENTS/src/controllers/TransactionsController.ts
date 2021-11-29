@@ -20,6 +20,14 @@ class TransactionsController {
         });
       }
 
+      if (client.status == 'Disapproved') {
+        return response.status(400).json({
+          error: {
+            message: 'Você não tem permissão para realizar transações',
+          },
+        });
+      }
+
       const targetClient = await clientsRepository.findOne({
         where: { cpf_number: cpf_to },
       });

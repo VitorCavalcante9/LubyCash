@@ -18,8 +18,7 @@ export default class ClientsController {
         data: { status, date },
       })
       .then((response) => {
-        const data = response.data;
-        clients = data;
+        clients = response.data;
       })
       .catch();
 
@@ -37,6 +36,27 @@ export default class ClientsController {
       'current_balance',
       'average_salary',
     ]);
+
+    const msClients = axios.create({
+      baseURL: `http://${process.env.MS_HOST?.split(':')[0]}:${process.env.MS_PORT}`,
+      responseType: 'json',
+    });
+
+    let exists;
+
+    await msClients
+      .get(`clients/${data.cpf_number}`, {
+        headers: { Authorization: process.env.MS_SECRET! },
+        data: { email: data.email },
+      })
+      .then((response) => {
+        exists = response.data.exists;
+      })
+      .catch();
+
+    if (exists) {
+      return response.status(400).json({ message: 'Este email já foi cadastrado' });
+    }
 
     const producer = new Producer();
     producer.produce({ topic: 'create-client', messages: [{ value: JSON.stringify(data) }] });
